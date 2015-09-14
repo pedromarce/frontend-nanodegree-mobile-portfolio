@@ -22,16 +22,19 @@ module.exports = function (grunt) {
       ]
     },
     imagemin: {
-      all: {
+      jpg: {
+        options: {
+          progressive: true
+        },
         files: [{
           expand: true,
           cwd: 'img/',
-          src: ['**/*.{png,jpg,gif}'],
+          src: ['**/*.jpg'],
           dest: 'dist/img'
         }, {
           expand: true,
           cwd: 'views/images/',
-          src: ['**/*.{png,jpg,gif}'],
+          src: ['**/*.jpg'],
           dest: 'dist/views/images'
         }]
       }
