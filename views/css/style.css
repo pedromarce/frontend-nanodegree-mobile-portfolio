@@ -3,7 +3,7 @@
 }*/
 * {
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
+  -`z-box-sizing: border-box;
   -box-sizing: border-box;
 }
 
@@ -27,6 +27,10 @@ form {
 
 #pizzaSize {
   font-weight: 800;
+}
+
+.mover-hidden {
+  display: none;
 }
 
 .mover {
