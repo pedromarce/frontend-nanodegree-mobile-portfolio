@@ -1,13 +1,4 @@
-/**
- * grunt-pagespeed-ngrok
- * http://www.jamescryer.com/grunt-pagespeed-ngrok
- *
- * Copyright (c) 2014 James Cryer
- * http://www.jamescryer.com
- */
 'use strict'
-
-var ngrok = require('ngrok');
 
 module.exports = function (grunt) {
 
