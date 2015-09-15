@@ -474,7 +474,7 @@ var resizePizzas = function (size) {
     var dx = 0;
     var newWidth = 0;
     // Get all elements just once instead of getting them in every access
-    var pizzas = document.querySelectorAll(".randomPizzaContainer");
+    var pizzas = document.getElementsByClassName("randomPizzaContainer");
     for (var i = 0; i < pizzas.length; i++) {
       // All pizzas have same size, so we just need to calculate once
       if (i==0) {
@@ -530,15 +530,14 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('mover');
   var scrollTop = document.body.scrollTop;
   if (Math.abs(lastScroll - scrollTop) > 2) {
     lastScroll = scrollTop;
-    var sinus = [Math.sin((scrollTop / 1250) + (0 % 5)),
-                 Math.sin((scrollTop / 1250) + (1 % 5)),
-                 Math.sin((scrollTop / 1250) + (2 % 5)),
-                 Math.sin((scrollTop / 1250) + (3 % 5)),
-                 Math.sin((scrollTop / 1250) + (4 % 5))];
+    var sinus = [];
+    for (var i = 0; i < 5; i++) {
+      sinus.push(Math.sin((scrollTop / 1250) + i));
+    }
     for (var i = 0; i < items.length; i++) {
       var phase = sinus[(i % 5)];
       var left = items[i].basicLeft + 100 * phase + 'px';
@@ -559,13 +558,13 @@ function updatePositions() {
 // New function to update visible background movers pizzas based on new size of the window
 // If they are outside the visible area, they get the class to be hidden 
 function updateVisibility() {
-  var items = document.querySelectorAll('.mover');
+  var items = document.getElementsByClassName('mover');
   for (var i = 0; i < items.length; i++) {
     if (parseFloat(items[i].style.top.replace('px', '')) > window.innerHeight || parseFloat(items[i].style.left.replace('px', '')) > (window.innerWidth + 75)) {
       items[i].className = 'mover-hidden';
     }
   }
-  var hidden = document.querySelectorAll('.mover-hidden');
+  var hidden = document.getElementsByClassName('mover-hidden');
   for (var i = 0; i < hidden.length; i++) {
     if (parseFloat(hidden[i].style.top.replace('px', '')) <= window.innerHeight || parseFloat(hidden[i].style.left.replace('px', '')) <= (window.innerWidth + 75)) {
       hidden[i].className = 'mover';
@@ -584,7 +583,8 @@ window.addEventListener('resize', updateVisibility);
 document.addEventListener('DOMContentLoaded', function () {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  // We assume a maximum resolution of 2048px, so we need 72 pizzas, we will hide those not visible in the screen
+  for (var i = 0; i < 72; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";

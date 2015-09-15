@@ -10,4 +10,4 @@ There is a hosted version of the production site available in:
 
  http://pedromarce.github.io/frontend-nanodegree-mobile-portfolio
 
- 
+Just open index.html from source folder for development version, index.html from dist folder for production version or go to the hosted URL to check the website. 
